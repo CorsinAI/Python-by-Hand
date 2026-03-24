@@ -4,9 +4,9 @@ class Grade:
     # Store names as a alist (Done)
     # Store scores as lists (Done)
     # Have an average function (Done)
-    # Have a Letter grading function (In Progress)
-    # Find top score (To be done)
-    # Use dictionaries instead (To be done)
+    # Have a Letter grading function (Done)
+    # Find top score (Done)
+    # Use dictionaries instead (In Progress)
 
     def main(self):
         # list of students
@@ -23,9 +23,16 @@ class Grade:
         allgrades = [gradesAlice, gradesBen, gradesCaroline, gradesDave, gradesEsther]
 
         #Loop through the name lists and then print out the average grade for that student
+        topscorer = ""
+        topscore = 0
         for i in range(len(mylist)):
-            print(mylist[i] + " has an average grade of")
-            print(g.average(allgrades[i]))
+            if(g.average(allgrades[i]) > topscore):
+                topscore = g.average(allgrades[i])
+                topscorer = mylist[i]
+            print(mylist[i] + " | Average ", end="")
+            print(g.average(allgrades[i]) , " | Grade: ", end="")
+            print(g.lettergrade(g.average(allgrades[i])))
+            print("Hightest scoring Student: " + topscorer + " with grade" , topscore)
 
     #returns the average of a list
     def average(self, list):
