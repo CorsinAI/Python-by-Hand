@@ -8,23 +8,20 @@
 
 # ----- DATA ----------------------------------------------------------------
 
-# TODO: create a dict called `students` where each key is a name (str)
-# and each value is a list of scores (list of ints).
-# Students and scores:
-#   Alice:    [4, 2, 4, 5, 6, 6]
-#   Ben:      [5, 1, 2, 4, 4, 3]
-#   Caroline: [4, 5, 5, 2, 3, 4]
-#   Dave:     [1, 2, 3, 4, 5, 6]
-#   Esther:   [6, 5, 6, 4, 3, 5]
 
-students = ...  # replace with your dict
+students = {
+    "Alice" :       [4, 2, 4, 5, 6, 6], 
+    "Ben" :         [5, 1, 2, 4, 4, 3], 
+    "Caroline" :    [4, 5, 5, 2, 3, 4], 
+    "Dave":         [1, 2, 3, 4, 5, 6], 
+    "Esther" :      [6, 5, 6, 4, 3, 5]
+}  
 
 
 # ----- HELPER --------------------------------------------------------------
 
 def average(scores):
-    # TODO: return the average of a list of numbers, rounded to 2 decimal places
-    pass
+    return round(sum(scores) / len(scores), 2)
 
 
 # ----- TASKS ---------------------------------------------------------------
@@ -32,32 +29,29 @@ def average(scores):
 # Task 1 — Print every student's average score.
 # Expected format:  Alice | avg: 4.5
 def print_averages(students):
-    # TODO: iterate over the dict and print name + average
-    pass
+    for student, grades in students.items():
+        print(f"{student} | avg: {average(grades)}")
 
 
 # Task 2 — Find and return the name of the student with the highest average.
 def top_scorer(students):
-    # TODO: find the key whose value-list has the highest average
-    pass
+    return max(students, key=lambda name: average(students[name]))
+
 
 
 # Task 3 — Add a new student "Frank" with scores [5, 4, 5, 3, 6, 4].
 def add_student(students, name, scores):
-    # TODO: add the entry to the dict (modify in place)
-    pass
+    students[name] = scores
 
 
 # Task 4 — Remove "Dave" from the dict safely (don't crash if he's missing).
 def remove_student(students, name):
-    # TODO: remove the key; use .pop() with a default so it won't raise
-    pass
+    students.pop(name, None)
 
 
 # Task 5 — Return a list of (name, average) tuples sorted best → worst.
 def ranked(students):
-    # TODO: sort students by average descending, return as list of tuples
-    pass
+    return sorted(students.items(), key=lambda kv: average(kv[1]), reverse=True)
 
 
 # ----- MAIN ----------------------------------------------------------------
